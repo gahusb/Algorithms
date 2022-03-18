@@ -17,50 +17,40 @@ public class Ramyeon_18185 {
         }
 
         int answer = 0;
-        for(int i = 0; i < N;) {
+        for(int i = 0; i < N; i++) {
             if(factory[i] > 0) {
                 // i + 1, i + 2 번 가게의 라면 유무를 확인
                 // 현재 살 수 있는 가장 많은 라면을 산다.
-                boolean excep = false;
-                if(factory[i + 1] > 0) {
-                    int min = Integer.MAX_VALUE;
-                    min = Math.min(min, factory[i]);
-                    min = Math.min(min, factory[i + 1]);
-                    
-                    int two = min * 5;
-                    if(factory[i + 2] > 0) {
-                        // 예외 케이스
-                        if(factory[i + 1] > factory[i + 2]) {
-                            if(factory[i] > factory[i + 1] - factory[i + 2]) {
-                                min = factory[i + 1] - factory[i + 2];
-                                two = min * 5;
-                            }
-                            factory[i] -= min;
-                            factory[i + 1] -= min;
-                            answer += two;
-                            excep = true;
-                        } else {
-                            int three = 0;
-                            min = Math.min(min, factory[i + 2]);
-                            three = min * 7;    // 각각 1개씩 구매
+                int min = 0;
 
-                            factory[i] -= min;
-                            factory[i + 1] -= min;
-                            factory[i + 2] -= min;
-                            answer += three;
-                        }
-                    } else {
-                        factory[i] -= min;
-                        factory[i + 1] -= min;
-                        answer += two;
-                    }
-                }
+                if(factory[i + 1] > factory[i + 2]) {
+                    // i + 1의 수가 i + 2의 수보다 크면,
+                    // 맨 앞의 두개를 묶어서 먼저 사고, 세 개를 묶어서 사는게 싸다.
+                    // 이 때, [i] > [i+1] - [i+2] 의 값을 비교하여 최소값으로 구매
+                    min = Math.min(factory[i], factory[i + 1] - factory[i + 2]);
+                    answer += min * 5;
+                    factory[i] -= min;
+                    factory[i + 1] -= min;
 
-                // 현재 위치에서 남은 라면의 개수만큼 모두 산다.
-                if(!excep) {
-                    answer += factory[i] * 3;
-                    i++;
+                    min = Math.min(factory[i], Math.min(factory[i + 1], factory[i + 2]));
+                    answer += min * 7;
+                    factory[i] -= min;
+                    factory[i + 1] -= min;
+                    factory[i + 2] -= min;
+                } else {    // 반대는 세개 묶어 사고, 두개 묶어 사는게 싸다.
+                    min = Math.min(factory[i], Math.min(factory[i + 1], factory[i + 2]));
+                    answer += min * 7;
+                    factory[i] -= min;
+                    factory[i + 1] -= min;
+                    factory[i + 2] -= min;
+
+                    min = Math.min(factory[i], factory[i + 1]);
+                    answer += min * 5;
+                    factory[i] -= min;
+                    factory[i + 1] -= min;
                 }
+                answer += factory[i] * 3;
+                factory[i] = 0;
             }
         }
 

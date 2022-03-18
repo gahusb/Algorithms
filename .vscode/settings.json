@@ -1,6 +1,9 @@
 {
     "java.project.sourcePaths": [
         "baekjoon_online",
-        "sw_test/2022-03-12_skfamily"
+        "sw_test/2022-03-12_skfamily",
+        "algorithm_learn",
+        "samsung_sw",
+        "swexpert"
     ]
 }
