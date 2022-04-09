@@ -1,10 +1,11 @@
 {
     "java.project.sourcePaths": [
         "swexpert",
+        "sw_test/Line",
         "sw_test/2022-03-12_skfamily",
         "samsung_sw",
         "baekjoon_online",
         "algorithm_learn",
-        "sw_test/Line"
+        "questions"
     ]
 }
