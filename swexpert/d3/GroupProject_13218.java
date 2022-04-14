@@ -1,6 +1,7 @@
+package d3;
 import java.util.Scanner;
 
-public class GroupProject_d3_13218 {
+public class GroupProject_13218 {
     public static int solution(int x) {
         return x / 3;
     }

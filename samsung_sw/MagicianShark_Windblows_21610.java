@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 public class MagicianShark_Windblows_21610 {
     static int N, M;
     static int[][] map;
+    static boolean[][] rain;
     static int[][] dir = {  // 0은 빈칸, 좌, 좌상, 상, 우상, 우, 우하, 하, 좌하
         {0, 0, -1, -1, -1, 0, 1, 1, 1},
         {0, -1, -1, 0, 1, 1, 1, 0, -1}
@@ -18,30 +19,37 @@ public class MagicianShark_Windblows_21610 {
     };
     static int[][] command;
     static Queue<Cloud> cloud;
-    public static void moveCloud(int d, int s) {
+    public static void moveCloudnRain(int d, int s) {
         int size = cloud.size();
 
+        rain = new boolean[N + 1][N + 1];
         while(size > 0) {
             Cloud tmp = cloud.poll();
-            int nr = tmp.r + (dir[0][d] * s);
-            int nc = tmp.c + (dir[1][d] * s);
+            int nr = tmp.r + (dir[0][d] * (s % N));
+            int nc = tmp.c + (dir[1][d] * (s % N));
 
             // 이어붙인 공간 넘어가기
-            while(nr <= 0) nr = N + nr;
-            while(nc <= 0) nc = N + nc;
-            while(nr > N) nr = nr - N;
-            while(nc > N) nc = nc - N;
+            if(nr <= 0) nr = N + nr;
+            if(nc <= 0) nc = N + nc;
+            if(nr > N) nr = nr - N;
+            if(nc > N) nc = nc - N;
 
             cloud.add(new Cloud(nr, nc));
+            map[nr][nc]++;
+            rain[nr][nc] = true;
             size--;
         }
     }
-    public static void rainncopywater() {
-        boolean[][] rain = new boolean[N + 1][N + 1];
+    public static void copywater() {
+        int[][] copyMap = new int[N + 1][N + 1];
+        for(int i = 1; i <= N; i++) {
+            for(int j = 1; j <= N; j++) {
+                copyMap[i][j] = map[i][j];
+            }
+        }
 
         while(!cloud.isEmpty()) {
             Cloud tmp = cloud.poll();
-            map[tmp.r][tmp.c]++;
             rain[tmp.r][tmp.c] = true;
 
             // 물 복사 마법
@@ -50,17 +58,15 @@ public class MagicianShark_Windblows_21610 {
                 int nr = tmp.r + checkBucket[0][i];
                 int nc = tmp.c + checkBucket[1][i];
                 if(nr <= 0 || nc <= 0 || nr > N || nc > N) continue;
-                if(map[nr][nc] > 0) cnt++; 
+                if(copyMap[nr][nc] > 0) cnt++; 
             }
             map[tmp.r][tmp.c] += cnt;
         }
-
-        makeCloud(rain);
     }
-    public static void makeCloud(boolean[][] rain) {
+    public static void makeCloud() {
         for(int i = 1; i <= N; i++) {
             for(int j = 1; j <= N; j++) {
-                if(!rain[i][j] && map[i][j] > 2) {
+                if(!rain[i][j] && map[i][j] >= 2) {
                     cloud.add(new Cloud(i, j));
                     map[i][j] -= 2;
                 }
@@ -69,8 +75,9 @@ public class MagicianShark_Windblows_21610 {
     }
     public static void solution() {
         for(int i = 0; i < M; i++) {
-            moveCloud(command[i][0], command[i][1]);
-            rainncopywater();
+            moveCloudnRain(command[i][0], command[i][1]);
+            copywater();
+            makeCloud();
         }
     }
     public static void main(String[] args) throws IOException {
