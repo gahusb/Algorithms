@@ -15,6 +15,11 @@ public class AlleyBossHoseok_20183 {
         B = Integer.parseInt(st.nextToken());
         C = Integer.parseInt(st.nextToken());
 
-        
+        int[] map = new int[N + 1];
+
+        st = new StringTokenizer(br.readLine());
+        for(int i = 0; i < map.length; i++) {
+            map[i] = Integer.parseInt(st.nextToken());
+        }
     }
 }
