@@ -1,12 +1,13 @@
 {
     "java.project.sourcePaths": [
         "swexpert",
+        "sw_test/bucketplace",
         "sw_test/Line",
         "sw_test/2022-03-12_skfamily",
         "samsung_sw",
+        "questions",
         "baekjoon_online",
         "algorithm_learn",
-        "questions",
-        "sw_test/bucketplace"
+        "programmers"
     ]
 }
