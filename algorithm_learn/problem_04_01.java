@@ -4,21 +4,9 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 class problem_04_01 {
-    public int solution(int n, int k, int[] arr) {
+    public int solution(int n, String str) {
         int result = Integer.MIN_VALUE;
 
-        for(int i = 0; i < n; i++) {
-            int tmp = k;
-            int tmpLen = 0;
-            for(int j = i; j < n; j++) {
-                if(arr[j] == 0) {
-                    if(tmp == 0) break;
-                    tmp--;
-                    tmpLen++;
-                } else tmpLen++;
-            }
-            if(result < tmpLen) result = tmpLen;
-        }
 
         return result;
     }
@@ -28,15 +16,9 @@ class problem_04_01 {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         int N = Integer.parseInt(st.nextToken());
-        int K = Integer.parseInt(st.nextToken());
 
-        int[] arr = new int[N];
+        String str = br.readLine();
 
-        st = new StringTokenizer(br.readLine());
-        for(int i = 0; i < N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
-        }
-
-        System.out.println(mc.solution(N, K, arr));
+        System.out.println(mc.solution(N, str));
     }
 }
