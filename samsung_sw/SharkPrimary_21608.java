@@ -26,6 +26,16 @@ public class SharkPrimary_21608 {
     public static int solution() {
         int answer = 0;
 
+        for(int i = 0; i < N * N; i++) {
+            int[][] tmp = new int[N + 1][N + 1];
+            for(int j = 1; j <= N; j++) {
+                for(int k = 1; k <= N; k++) {
+                    tmp[j][k] = checkFavor(j, k, i);
+                }
+            }
+
+            
+        }
 
         return answer;
     }
