@@ -1,12 +1,33 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 import java.util.StringTokenizer;
 
 class problem_04_01 {
-    public int solution(int n, String str) {
-        int result = Integer.MIN_VALUE;
+    public char solution(int n, String str) {
+        char result;
+        int max = Integer.MIN_VALUE;
 
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+
+        char[] charArr = str.toCharArray();
+        for(char c : charArr) {
+            if(map.containsKey(c)) {
+                map.put(c, map.get(c) + 1);
+            } else {
+                map.put(c, 1);
+            }
+        }
+
+        Iterator<Character> it = map.iterator();
+        while(it.hasNext()) {
+            char c = it.next();
+            if(max < map.get(c)) {
+                max = map.get(c);
+                result = c;
+            }
+        }
 
         return result;
     }
