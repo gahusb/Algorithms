@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 class problem_04_01 {
     public char solution(int n, String str) {
-        char result;
+        char result = '\0';
         int max = Integer.MIN_VALUE;
 
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
@@ -21,7 +21,7 @@ class problem_04_01 {
             }
         }
 
-        Iterator<Character> it = map.iterator();
+        Iterator<Character> it = map.keySet().iterator();
         while(it.hasNext()) {
             char c = it.next();
             if(max < map.get(c)) {
