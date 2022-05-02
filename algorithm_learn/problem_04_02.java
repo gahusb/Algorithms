@@ -1,10 +1,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 class problem_04_02 {
-    public int solution(int n, String str) {
+    public int solution(String f, String s) {
         int result = Integer.MIN_VALUE;
 
 
@@ -13,12 +12,10 @@ class problem_04_02 {
     public static void main(String[] args) throws IOException {
         problem_04_02 mc = new problem_04_02();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int N = Integer.parseInt(st.nextToken());
+        String first = br.readLine();
+        String second = br.readLine();
 
-        String str = br.readLine();
-
-        System.out.println(mc.solution(N, str));
+        System.out.println(mc.solution(first, second));
     }
 }
