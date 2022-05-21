@@ -3,30 +3,30 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
-class problem_05_01 {
+class problem_05_02 {
     public String solution(String str) {
-        String answer = "YES";
+        StringBuilder sb = new StringBuilder();
         char[] cArr = str.toCharArray();
 
         Stack<Character> st = new Stack<>();
 
         for(char x : cArr) {
-            if(x == '(') st.push(x);
-            else {
-                if(st.isEmpty()) return "NO";
-
-                char c = st.peek();
-                if(c == '(') st.pop();
-                else st.push(x);
+            if(x == ')') {
+                while(true) {
+                    char c = st.pop();
+                    if(c == '(') break;
+                }
+            } else if(st.isEmpty() && x != '(') {
+                sb.append(x);
+            } else {
+                st.push(x);
             }
         }
 
-        if(!st.isEmpty()) return "NO";
-
-        return answer;
+        return sb.toString();
     }
     public static void main(String[] args) throws IOException {
-        problem_05_01 mc = new problem_05_01();
+        problem_05_02 mc = new problem_05_02();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
         String str = br.readLine();
