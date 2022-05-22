@@ -12,10 +12,7 @@ class problem_05_02 {
 
         for(char x : cArr) {
             if(x == ')') {
-                while(true) {
-                    char c = st.pop();
-                    if(c == '(') break;
-                }
+                while(st.pop() != '(');
             } else if(st.isEmpty() && x != '(') {
                 sb.append(x);
             } else {
