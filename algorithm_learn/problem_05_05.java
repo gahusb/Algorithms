@@ -9,17 +9,12 @@ class problem_05_05 {
         char[] cArr = str.toCharArray();
         Stack<Character> st = new Stack<>();
 
-        int stick = 0, lazer = 0;
         for(char c : cArr) {
             if(c == '(') {
                 st.push(c);
             } else {
                 char x = st.pop();
-                if(x == '(') {
-                    lazer++;
-                } else {
-                    stick++;
-                }
+                answer += st.size();
             }
         }
 
