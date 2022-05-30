@@ -13,7 +13,7 @@ class problem_05_05 {
             if(c == '(') {
                 st.push(c);
             } else {
-                char x = st.pop();
+                st.pop();
                 answer += st.size();
             }
         }
