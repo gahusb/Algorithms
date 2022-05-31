@@ -1,10 +1,24 @@
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
-import java.util.Stack;
 class problem_05_06 {
     public int solution(int N, int K) {
         int answer = 0;
-        Stack<Character> st = new Stack<>();
+        Queue<Integer> qu = new LinkedList<Integer>();
+
+        for(int i = 1; i <= N; i++) qu.add(i);
+
+        int cnt = 1;
+        while(qu.size() > 1) {
+            int tmp = qu.poll();
+            if(cnt != K) {
+                qu.add(tmp);
+                cnt++;
+            } else cnt = 1;
+        }
+
+        answer = qu.poll();
 
         return answer;
     }

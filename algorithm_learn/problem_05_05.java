@@ -6,15 +6,15 @@ import java.util.Stack;
 class problem_05_05 {
     public int solution(String str) {
         int answer = 0;
-        char[] cArr = str.toCharArray();
         Stack<Character> st = new Stack<>();
 
-        for(char c : cArr) {
-            if(c == '(') {
-                st.push(c);
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == '(') {
+                st.push('(');
             } else {
                 st.pop();
-                answer += st.size();
+                if(str.charAt(i-1) == '(') answer += st.size();
+                else answer++;
             }
         }
 
