@@ -33,5 +33,7 @@ class problem_01_03 {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         System.out.println(mc.solution(str));
+
+        sc.close();
     }
 }

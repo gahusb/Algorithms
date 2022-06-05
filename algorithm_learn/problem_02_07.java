@@ -26,5 +26,7 @@ class problem_02_07 {
         }
 
         System.out.println(mc.solution(ox));
+
+        sc.close();
     }
 }

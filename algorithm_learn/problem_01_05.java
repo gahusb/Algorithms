@@ -31,5 +31,7 @@ class problem_01_05 {
         String str = sc.nextLine();
 
         System.out.println(mc.solution(str));
+
+        sc.close();
     }
 }

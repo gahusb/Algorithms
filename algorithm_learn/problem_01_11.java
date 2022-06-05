@@ -50,5 +50,7 @@ class problem_01_11 {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
         System.out.println(mc.solution(str));
+
+        sc.close();
     }
 }

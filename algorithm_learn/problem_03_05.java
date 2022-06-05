@@ -23,5 +23,7 @@ class problem_03_05 {
         int N = sc.nextInt();
 
         System.out.println(mc.solution(N));
+
+        sc.close();
     }
 }

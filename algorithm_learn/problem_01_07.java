@@ -26,5 +26,7 @@ class problem_01_07 {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         System.out.println(mc.solution1(str));
+
+        sc.close();
     }
 }

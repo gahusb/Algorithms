@@ -6,27 +6,22 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 class problem_05_08 {
-    public int solution(int M, Queue<Integer> qu) {
+    public int solution(int M, Queue<Person> qu) {
         int answer = 0;
 
-        while(true) {
-            int max = 0, tmp = 0;
-            for(int i = 0; i < qu.size(); i++) {
-                tmp = qu.poll();
-                if(max < tmp) max = tmp;
-                qu.add(tmp);
-            }
-
-            while(true) {
-                tmp = qu.poll();
-                if(tmp != max) qu.add(tmp);
-                else {
-                    answer++;
+        while(!qu.isEmpty()) {
+            Person person = qu.poll();
+            for(Person x : qu) {
+                if(x.danger > person.danger) {
+                    qu.offer(person);
+                    person = null;
                     break;
                 }
             }
-
-            if(tmp == M) break;
+            if(person != null) {
+                answer++;
+                if(person.idx == M) return answer;
+            }
         }
 
         return answer;
@@ -39,12 +34,21 @@ class problem_05_08 {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        Queue<Integer> qu = new LinkedList<Integer>();
+        Queue<Person> qu = new LinkedList<>();
         st = new StringTokenizer(br.readLine());
         for(int i = 0; i < N; i++) {
-            qu.add(Integer.parseInt(st.nextToken()));
+            qu.offer(new Person(i, Integer.parseInt(st.nextToken())));
         }
 
         System.out.println(mc.solution(M, qu));
+    }
+}
+
+class Person {
+    int idx;
+    int danger;
+    public Person(int idx, int danger) {
+        this.idx = idx;
+        this.danger = danger;
     }
 }

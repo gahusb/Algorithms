@@ -29,5 +29,7 @@ class problem_02_08 {
         for(int x : mc.solution(kor)) {
             System.out.print(x + " ");
         }
+
+        sc.close();
     }
 }

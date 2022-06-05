@@ -19,5 +19,7 @@ class problem_02_05 {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
         System.out.println(mc.solution(N));
+
+        sc.close();
     }
 }

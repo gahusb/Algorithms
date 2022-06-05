@@ -21,5 +21,6 @@ public class problem_01_01 {
         char c = sc.next().charAt(0);
 
         System.out.println(mc.solution(str, c));
+        sc.close();
     }
 }

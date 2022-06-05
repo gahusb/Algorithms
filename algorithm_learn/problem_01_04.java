@@ -30,5 +30,7 @@ class problem_01_04 {
         for(String word : mc.solution(n, words)) {
             System.out.println(word);
         }
+
+        sc.close();
     }
 }

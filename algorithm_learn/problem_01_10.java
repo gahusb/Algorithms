@@ -68,5 +68,7 @@ class problem_01_10 {
         String str = sc.next();
         char c = sc.next().charAt(0);
         System.out.println(mc.solution(str, c));
+
+        sc.close();
     }
 }

@@ -21,5 +21,7 @@ class problem_02_04 {
             answer += arr[i] + " ";
         }
         System.out.println(answer);
+
+        sc.close();
     }
 }

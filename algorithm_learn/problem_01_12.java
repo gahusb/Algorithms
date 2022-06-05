@@ -41,5 +41,7 @@ class problem_01_12 {
         int su = sc.nextInt();
         String str = sc.next();
         System.out.println(mc.solution(su, str));
+
+        sc.close();
     }
 }

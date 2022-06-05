@@ -38,5 +38,7 @@ class problem_02_06 {
         for(int x : mc.solution(N, arr)) {
             System.out.print(x + " ");
         }
+
+        sc.close();
     }
 }
