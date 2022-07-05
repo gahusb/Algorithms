@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 class problem_06_05 {
-    public static String solution(int N, int[] arr) {
+    public String solution(int N, int[] arr) {
         String answer = "U";
         Arrays.sort(arr);
         for(int i = 0; i < N - 1; i++) {

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 class problem_06_06 {
-    public static void solution(int N, int[] arr) {
+    public void solution(int N, int[] arr) {
         int cheolsu = 0;
         int partner = 0;
         int[] tmp = arr.clone();    // 깊은 복사
