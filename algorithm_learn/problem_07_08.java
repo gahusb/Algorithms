@@ -38,5 +38,6 @@ class problem_07_08 {
         int E = sc.nextInt();
 
         System.out.println(mc.BFS(S, E));
+        sc.close();
     }
 }
