@@ -22,7 +22,7 @@ class problem_09_07_prim {
     static int[] check;
     
     public static void main(String[] args) throws IOException {
-        problem_09_07_prim mc = new problem_09_07_prim();
+        // problem_09_07_prim mc = new problem_09_07_prim();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(reader.readLine());
 
@@ -33,7 +33,7 @@ class problem_09_07_prim {
         
         ArrayList<ArrayList<Edge>> graph = new ArrayList<ArrayList<Edge>>();
         for(int i = 0; i <= V; i++) graph.add(new ArrayList<Edge>());
-        
+
         for(int i = 1; i <= E; i++) {
             if(!st.hasMoreTokens()) st = new StringTokenizer(reader.readLine());
             int a = Integer.parseInt(st.nextToken());

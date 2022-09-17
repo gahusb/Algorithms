@@ -34,7 +34,7 @@ class problem_09_07_kruskal {
     }
     
     public static void main(String[] args) throws IOException {
-        problem_09_07_kruskal mc = new problem_09_07_kruskal();
+        // problem_09_07_kruskal mc = new problem_09_07_kruskal();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(reader.readLine());
 

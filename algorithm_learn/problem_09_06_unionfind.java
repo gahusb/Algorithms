@@ -18,7 +18,7 @@ class problem_09_06_unionfind {
     }
     
     public static void main(String[] args) throws IOException {
-        problem_09_06_unionfind mc = new problem_09_06_unionfind();
+        // problem_09_06_unionfind mc = new problem_09_06_unionfind();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(reader.readLine());
 
