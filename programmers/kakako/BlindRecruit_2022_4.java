@@ -3,34 +3,57 @@ package kakako;
 // 양궁대회
 public class BlindRecruit_2022_4 {
     static int max;
-    public void DFS(int n, int[] info, int[] tmp, int[] answer) {
-        if(n <= 0) {
-            int score = 0;
-            for(int i = 0; i < info.length; i++) {
-                if(info[i] < tmp[i]) {
-                    score += (10 - i);
-                }
+    public void DFS(int n, int[] info, int[] tmp, int[] answer, int depth) {
+        if(depth == 10) {
+            tmp[depth] = n;
+            int apeach = 0, ryan = 0;
+            for(int i = 0; i < 11; i++) {
+                if(info[i] == 0 && tmp[i] == 0) continue;
+                if(info[i] < tmp[i]) ryan += (10 - i);
+                else apeach += (10 - i);
             }
-            if(max < score) {
-                for(int i = 0; i < tmp.length; i++) {
-                    answer[i] = tmp[i];
+
+            if(ryan > apeach && max <= (ryan - apeach)) {
+                boolean c = true;
+                if(max != 0 && max == (ryan - apeach)) {
+                    for(int i = 10; i >= 0; --i) {
+                        if(answer[i] == tmp[i]) continue;
+                        if(answer[i] > tmp[i]) {
+                            c = false;
+                        }
+                        break;
+                    }
                 }
-                max = score > max ? score : max;
+                if(c) {
+                    for(int i = 0; i < 11; i++) answer[i] = tmp[i];
+                    max = (ryan - apeach) >= max ? (ryan - apeach) : max;
+                }
             }
             return;
         }
-
-        for(int i = 0; i < info.length; i++) {
-            tmp[i]++;
-            DFS(n - 1, info, tmp, answer);
-            tmp[i]--;
+        for(int i = n; i >= 0; --i) {
+            tmp[depth] = i;
+            DFS(n - i, info, tmp, answer, depth + 1);
         }
     }
+
     public int[] solution(int n, int[] info) {
         int[] answer = new int[11];
         int[] tmp = new int[11];
-        max = Integer.MIN_VALUE;
-        DFS(n, info, tmp, answer);
+        max = 0;
+        DFS(n, info, tmp, answer, 0);
+
+        boolean check = false;
+        for(int i = 0; i < 11; i++) {
+            if(answer[i] != 0) {
+                check = true;
+                break;
+            }
+        }
+        if(!check) {
+            answer = new int[1];
+            answer[0] = -1;
+        }
         return answer;
     }
     public static void main(String[] args) throws Exception {
