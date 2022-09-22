@@ -21,10 +21,14 @@ public class BlindRecruit_2021_3 {
         public int compareTo(Rank o) {
             return o.score - this.score;
         }
+
+        public String toString() {
+            return "Rank(lang : " + lang + ", tech : " + tech + ", career : " + career + ", food : " + food + ", score : " + score + ")";
+        }
     }
 
     public int[] solution(String[] info, String[] query) {
-        int[] answer = {};
+        int[] answer = new int[query.length];
 
         ArrayList<Rank> applyer = new ArrayList<>();
         ArrayList<Rank> qu = new ArrayList<>();
@@ -36,13 +40,25 @@ public class BlindRecruit_2021_3 {
         Collections.sort(applyer);
 
         for(int i = 0; i < query.length; i++) {
-            query[i].replaceAll("and", "");
-            String[] sArr = info[i].split(" ");
+            String tmp = query[i].replaceAll("and", "");
+            tmp = tmp.replaceAll("  ", " ");
+            String[] sArr = tmp.split(" ");
             qu.add(new Rank(sArr[0], sArr[1], sArr[2], sArr[3], Integer.parseInt(sArr[4])));
         }
 
-        while(!applyer.isEmpty()) {
+        for(int i = 0; i < qu.size(); i++) {
+            Rank rank = qu.get(i);
 
+            for(int j = 0; j < applyer.size(); j++) {
+                if(rank.score > applyer.get(j).score) continue;
+                int cnt = 1;
+                if(rank.lang.equals("-") || rank.lang.equals(applyer.get(j).lang)) cnt++;
+                if(rank.tech.equals("-") || rank.tech.equals(applyer.get(j).tech)) cnt++;
+                if(rank.career.equals("-") || rank.career.equals(applyer.get(j).career)) cnt++;
+                if(rank.food.equals("-") || rank.food.equals(applyer.get(j).food)) cnt++;
+
+                if(cnt >= 5) answer[i]++;
+            }
         }
 
         return answer;
@@ -73,5 +89,6 @@ public class BlindRecruit_2021_3 {
         for(int i = 0; i < result.length; i++) {
             System.out.print(result[i] + " ");
         }
+        System.out.println();
     }
 }
