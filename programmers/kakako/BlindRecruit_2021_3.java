@@ -19,7 +19,7 @@ public class BlindRecruit_2021_3 {
 
         @Override
         public int compareTo(Rank o) {
-            return o.score - this.score;
+            return this.score - o.score;
         }
 
         public String toString() {
@@ -49,15 +49,26 @@ public class BlindRecruit_2021_3 {
         for(int i = 0; i < qu.size(); i++) {
             Rank rank = qu.get(i);
 
-            for(int j = 0; j < applyer.size(); j++) {
-                if(rank.score > applyer.get(j).score) continue;
-                int cnt = 1;
+            int start = 0;
+            int end = applyer.size();
+
+            while(start < end) {    // lower bound
+                int mid = (start + end) / 2;
+                if(applyer.get(mid).score >= rank.score) {
+                    end = mid;
+                } else {
+                    start = mid + 1;
+                }
+            }
+
+            for(int j = end; j < applyer.size(); j++) {
+                int cnt = 0;
                 if(rank.lang.equals("-") || rank.lang.equals(applyer.get(j).lang)) cnt++;
                 if(rank.tech.equals("-") || rank.tech.equals(applyer.get(j).tech)) cnt++;
                 if(rank.career.equals("-") || rank.career.equals(applyer.get(j).career)) cnt++;
                 if(rank.food.equals("-") || rank.food.equals(applyer.get(j).food)) cnt++;
 
-                if(cnt >= 5) answer[i]++;
+                if(cnt >= 4) answer[i]++;
             }
         }
 
