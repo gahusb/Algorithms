@@ -1,6 +1,15 @@
 import java.io.IOException;
 
 class problem_07_09_DFS {
+    static class Node {
+        int data;
+        Node lt, rt;
+        public Node(int data) {
+            this.data = data;
+            lt = rt = null;
+        }
+    }
+
     Node root;
     public int DFS(int lvl, Node root) {
         if(root.lt == null && root.rt == null) return lvl;
@@ -17,13 +26,6 @@ class problem_07_09_DFS {
         mc.root.lt.rt = new Node(5);
         System.out.println(mc.DFS(0, mc.root));
     }
-}
 
-class Node {
-    int data;
-    Node lt, rt;
-    public Node(int data) {
-        this.data = data;
-        lt = rt = null;
-    }
+    
 }

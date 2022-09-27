@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 class problem_08_14 {
+    static class Point {
+        int x, y;
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+    
     static int N, M, len, answer;
     static int[] combi;
     static ArrayList<Point> home, pizza;
@@ -61,13 +69,5 @@ class problem_08_14 {
         combi = new int[M];
         mc.DFS(0, 0);
         System.out.println(answer);
-    }
-}
-
-class Point {
-    int x, y;
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
     }
 }

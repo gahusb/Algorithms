@@ -11,10 +11,8 @@ public class DigitJump_2210 {
     };
     static HashSet<Integer> digits;
     static void DFS(int[][] board, int r, int c, int len, int digit) {
-        if(len == 6) {
-            if(!digits.contains(digit)) {
-                digits.add(digit);
-            }
+        if(len >= 6) {
+            digits.add(digit);
             return;
         }
 
@@ -22,8 +20,7 @@ public class DigitJump_2210 {
             int nr = r + dir[0][i];
             int nc = c + dir[1][i];
             if(nr < 0 || nc < 0 || nr >= 5 || nc >= 5) continue;
-            digit = digit * 10 + board[nr][nc];
-            DFS(board, nr, nc, len + 1, digit);
+            DFS(board, nr, nc, len + 1, digit * 10 + board[nr][nc]);
         }
     }
     public static void main(String[] args) throws IOException {
@@ -40,7 +37,11 @@ public class DigitJump_2210 {
         }
 
         digits = new HashSet<Integer>();
-        DFS(board, 0, 0, 0, 0);
+        for(int i = 0; i < 5; i++) {
+            for(int j = 0; j < 5; j++) {
+                DFS(board, i, j, 1, board[i][j]);
+            }
+        }
         System.out.println(digits.size());
     }
 }
